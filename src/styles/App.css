@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 35%;
+}
+
+.bottom {
+  width: 100%;
+  height: 35%;  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 30px;
+}
+
+.center {
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

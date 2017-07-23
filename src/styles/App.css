@@ -3,25 +3,25 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-image: url('http://www.amazingwallpaperz.com/wp-content/uploads/Landscape-1920x1080-Widescreen-Background-Wallpapers.jpg');
+  background-size: auto 100%;
 }
 
 .top {
   display: flex;
   flex-direction: row;
+  height: 25%;
   width: 100%;
   justify-content: space-between;
   align-items: flex-start;
-  height: 35%;
 }
 
 .bottom {
   width: 100%;
-  height: 35%;  
+  height: 45%;  
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding-top: 30px;
+  justify-content: center;
 }
 
 .center {
@@ -29,4 +29,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fe_title {
+  display: none;
 }

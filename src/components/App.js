@@ -4,6 +4,8 @@ import Time from './Time'
 import Weather from './Weather'
 import BusInfo from './BusInfo'
 import Calendar from './Calendar'
+import Quotes from './Quotes'
+
 import '../styles/App.css';
 
 class App extends Component {
@@ -11,15 +13,14 @@ class App extends Component {
     return (
       <div className='App'>
         <div className='top'>
-          <Weather />
           <Time />
+          <Weather />
         </div>
         <div className='center'>
           <Greeting />
         </div>
         <div className='bottom'>
           <BusInfo />
-          <Calendar />
         </div>
       </div>
     );

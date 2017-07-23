@@ -1,3 +1,8 @@
-.greeting {
-    font-size: 70px;
+.mainGreeting {
+    font-size: 60px;
+}
+
+.subGreeting {
+    font-size: 20px;
+    padding-top: 15px;
 }

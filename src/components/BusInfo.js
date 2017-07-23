@@ -14,7 +14,7 @@ class BusInfo extends Component {
     getBusInfo = async () => {
         const busData = await (await fetch('https://crossorigin.me/https://www.metlink.org.nz/api/v1/StopDepartures/7021')).json()
         const services = []
-        for (var i = 0; i < 9; i++) {
+        for (var i = 0; i < 5; i++) {
             services[i] = busData.Services[i]
         }
         this.setState({
@@ -31,7 +31,7 @@ class BusInfo extends Component {
             return `${Math.round(rawMinutes)} min`
         } else if(Math.round(rawMinutes) < 59) {
             return `${Math.round(rawMinutes)} mins`
-        } else if(Math.round(rawMinutes) === 60) {
+        } else if(Math.round(rawMinutes / 60) === 1) {
             return `${Math.round(rawMinutes / 60)} hour`
         } else if(Math.round(rawMinutes) > 60) {
             return `${Math.round(rawMinutes / 60)} hours`
@@ -42,6 +42,9 @@ class BusInfo extends Component {
       setInterval(this.getBusInfo, 20000)
     return (
         <div>
+            <div className='busGreeting'>
+                Here's the buses that on their way
+            </div>
             {this.state.busInfoAvaliable 
             ?
             <table>

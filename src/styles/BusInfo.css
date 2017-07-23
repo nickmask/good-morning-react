@@ -1,19 +1,28 @@
-td {
+th {
     border-top: 1px solid #ddd;
-    padding: 3px 0 3px 0;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0 5px 0;
+}
+
+td {
+    padding: 5px 0 5px 0;
     box-sizing: inherit;
     text-align: center;
 }
 
 .bus {
-    background-color: #f2f2f2;
-    width: 60px;
+    width: 80px;
 }
 
 .due {
-    width: 150px;
+    width: 200px;
 }
 
 table {
     border-collapse: collapse;
+}
+
+.busGreeting {
+    font-weight: medium;
+    padding-bottom: 10px;
 }

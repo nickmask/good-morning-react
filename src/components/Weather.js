@@ -7,7 +7,7 @@ class Weather extends Component {
   render() {
     return (
         <div className='weather'>
-            <Forecast latitude={-41.2888} longitude={174.7772} name='Wellington' units='CA' font='Helvetica Neue' />
+            <Forecast latitude={-41.2888} longitude={174.7772} name='Wellington' units='CA' font='Helvetica Neue' color='#ffffff' />
         </div>
     );
   }

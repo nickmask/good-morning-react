@@ -10,7 +10,7 @@ class Time extends Component {
     }
     getTime = () => {
         let time = moment().format('h:mm')
-        let date = moment().format('dddd, Do MMMM')
+        let date = moment().format('dddd D MMMM')
         this.setState({
             time,
             date

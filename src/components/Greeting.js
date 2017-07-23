@@ -11,7 +11,12 @@ class Greeting extends Component {
   render() {
     return (
       <div className='greeting'>
-          Hello Tess!
+        <div className='mainGreeting'>
+          Good morning, Tess!
+        </div>
+        <div className='subGreeting'>
+          It's going 25 km/h today, jacket up!
+        </div>
       </div>
     );
   }

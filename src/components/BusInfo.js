@@ -10,6 +10,7 @@ class BusInfo extends Component {
 
     componentDidMount = () => {
         this.getBusInfo()
+        setInterval(this.getBusInfo, 20000)
     }
     getBusInfo = async () => {
         const busData = await (await fetch('https://crossorigin.me/https://www.metlink.org.nz/api/v1/StopDepartures/7021')).json()
@@ -39,7 +40,6 @@ class BusInfo extends Component {
     }
 
   render() {
-      setInterval(this.getBusInfo, 20000)
     return (
         <div>
             <div className='busGreeting'>

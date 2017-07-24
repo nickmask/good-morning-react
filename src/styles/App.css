@@ -3,8 +3,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-image: url('http://www.amazingwallpaperz.com/wp-content/uploads/Landscape-1920x1080-Widescreen-Background-Wallpapers.jpg');
-  background-size: auto 100%;
+  background: url('http://www.amazingwallpaperz.com/wp-content/uploads/Landscape-1920x1080-Widescreen-Background-Wallpapers.jpg') center center no-repeat;
+  background-size: cover;
 }
 
 .top {

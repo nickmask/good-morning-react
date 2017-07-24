@@ -12,6 +12,7 @@
     "moment": "^2.18.1",
     "random-qoutes-generator": "0.0.1",
     "react": "^15.6.1",
+    "react-animated-weather": "^0.1.6",
     "react-big-calendar": "^0.14.4",
     "react-dom": "^15.6.1",
     "react-forecast": "^0.0.7"

@@ -8,6 +8,9 @@ class Time extends Component {
         time: moment().format('h:mm:ss a'),
         date: moment().format('dddd, Do MMMM')
     }
+    componentDidMount = () => {
+        setInterval(this.getTime, 1000)
+    }
     getTime = () => {
         let time = moment().format('h:mm')
         let date = moment().format('dddd D MMMM')
@@ -16,10 +19,7 @@ class Time extends Component {
             date
         })
     }
-
     render() {
-        setInterval(this.getTime, 1000)
-
         return (
             <div className='time'>
                 <div className='clock'>

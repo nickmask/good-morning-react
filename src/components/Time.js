@@ -6,7 +6,7 @@ import '../styles/Time.css';
 class Time extends Component {
     state = {
         time: moment().format('h:mm:ss a'),
-        date: moment().format('dddd, Do MMMM')
+        date: moment().format('dddd, Do MMMM'),
     }
     componentDidMount = () => {
         setInterval(this.getTime, 1000)
@@ -18,6 +18,7 @@ class Time extends Component {
             time,
             date
         })
+        this.props.lastUpdated(moment().format('h:mm:ss a'))
     }
     render() {
         return (

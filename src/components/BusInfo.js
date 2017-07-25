@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 
 import '../styles/BusInfo.css'
 
@@ -22,6 +23,7 @@ class BusInfo extends Component {
             services,
             busInfoAvaliable: true
         })
+        this.props.lastUpdated(moment().format('h:mm:ss a'))
     }
 
     formateTime = (timeUntillDeparture) => {

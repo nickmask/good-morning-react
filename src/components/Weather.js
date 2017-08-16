@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import ReactAnimatedWeather from 'react-animated-weather'
+
+import { requestWeather } from '../actions'
 
 import '../styles/Weather.css'
 
@@ -12,39 +15,22 @@ const defaults = {
 
 class Weather extends Component {
 
-    state = {
-        weatherAvaliable: false
-    }
     componentDidMount = () => {
-        this.getWeatherInfo()
-        setInterval(this.getWeatherInfo, 120000)
-    }
-    getWeatherInfo = async () => {
-        const weather = await (await fetch('https://crossorigin.me/https://api.darksky.net/forecast/664e5ccc894fb00d19e881ce36b9b30b/-41.2888,174.7772?units=ca')).json()
-
-        if(weather.currently.icon === 'clear-night') {
-            this.setState({
-                icon: 'CLEAR_NIGHT',
-            })
-        }
-        this.setState({
-            temperature: weather.currently.temperature,
-            windSpeed: weather.currently.windSpeed
-        })
-        console.log(weather.currently)
+        this.props.getWeather()
+        setInterval(this.props.getWeather(), 120000)
     }
 
     render() {
     return (
         <div className='weather'>
-            {this.state.weatherAvaliable ?
+            {this.props.weatherData.isLoading ?
             null
             :
             <div>
-                <div>{this.state.temperature} degrees celc</div>
-                <div>{this.state.windSpeed} km/h</div>
+                <div>{this.props.weatherData.weather.currently.temperature} degrees celc</div>
+                <div>{this.props.weatherData.weather.currently.windSpeed} km/h</div>
                 <ReactAnimatedWeather
-                    icon={this.state.icon}
+                    icon={'CLEAR_NIGHT'}
                     color={defaults.color}
                     size={defaults.size}
                     animate={defaults.animate}
@@ -56,4 +42,24 @@ class Weather extends Component {
     }
 }
 
-export default Weather
+
+const mapStateToProps = state => {
+    return {
+      weatherData: state.weatherData
+    }
+  }
+  
+const mapDispatchToProps = dispatch => {
+    return {
+        getWeather: () => {
+            dispatch(requestWeather())            
+        }
+    }
+}
+
+const WeatherContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Weather)
+
+export default WeatherContainer;

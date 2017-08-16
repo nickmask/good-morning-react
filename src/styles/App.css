@@ -3,9 +3,11 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: url('http://www.amazingwallpaperz.com/wp-content/uploads/Landscape-1920x1080-Widescreen-Background-Wallpapers.jpg') center center no-repeat;
+  background: greenyellow;
   background-size: cover;
 }
+
+/* url('http://www.amazingwallpaperz.com/wp-content/uploads/Landscape-1920x1080-Widescreen-Background-Wallpapers.jpg') center center no-repeat; */
 
 .top {
   display: flex;

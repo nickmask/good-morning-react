@@ -1,29 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import moment from 'moment'
+
+import { requestTimetable } from '../actions'
 
 import '../styles/BusInfo.css'
 
 class BusInfo extends Component {
-    state = {
-        busInfoAvaliable: false,
-        services: []
-    }
-
     componentDidMount = () => {
-        this.getBusInfo()
-        setInterval(this.getBusInfo, 20000)
-    }
-    getBusInfo = async () => {
-        const busData = await (await fetch('https://crossorigin.me/https://www.metlink.org.nz/api/v1/StopDepartures/7021')).json()
-        const services = []
-        for (var i = 0; i < 5; i++) {
-            services[i] = busData.Services[i]
-        }
-        this.setState({
-            services,
-            busInfoAvaliable: true
-        })
-        this.props.lastUpdated(moment().format('h:mm:ss a'))
+        setInterval(this.props.getBusDetails(this.props.busStop), 20000)
     }
 
     formateTime = (timeUntillDeparture) => {
@@ -47,15 +32,17 @@ class BusInfo extends Component {
             <div className='busGreeting'>
                 Here's the buses that on their way
             </div>
-            {this.state.busInfoAvaliable 
+            {this.props.isLoading
             ?
+            null
+            :
             <table>
                 <tbody>
                 <tr>
                     <th>Bus</th>
                     <th>Due</th> 
                 </tr>
-                {this.state.services.map((service, i) => (
+                {this.props.busDetails.timetable.map((service, i) => (
                 <tr key={i}>
                     <td className='bus'>{service.ServiceID}</td>
                     <td className='due'>{this.formateTime(service.DisplayDepartureSeconds)}</td>
@@ -63,17 +50,31 @@ class BusInfo extends Component {
                 ))}
                 </tbody>
             </table>
-            :
-            <div>Loading</div>
             }
         </div>
     );
   }
 }
 
-export default BusInfo;
+const mapStateToProps = state => {
+    return {
+      busDetails: state.busDetails,
+      busStop: state.induction.busStop,
+      isLoading: state.busDetails.isLoading
+    }
+  }
+  
+const mapDispatchToProps = dispatch => {
+    return {
+        getBusDetails: (busStop) => {
+            dispatch(requestTimetable(busStop))            
+        }
+    }
+}
 
+const BusInfoContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(BusInfo)
 
-
-// const fetchAsyncA = async () => 
-// 	await (await fetch('https://api.github.com')).json()
+export default BusInfoContainer;

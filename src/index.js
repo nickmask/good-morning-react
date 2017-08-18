@@ -4,12 +4,11 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import logger from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
-import persistState from 'redux-localstorage'
 
 import './styles/index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import reducer from './reducers'
+import rootReducer from './reducers'
 import rootSaga from './sagas'
 
 require('es6-promise').polyfill();
@@ -22,7 +21,7 @@ const middleware = [sagaMiddleware, logger]
 const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {}
 
 const store = createStore(
-  reducer,
+  rootReducer,
   persistedState,
   applyMiddleware(...middleware)
 )

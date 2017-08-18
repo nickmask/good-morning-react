@@ -7,8 +7,7 @@ import data from '../busData.json'
 import * as actions from '../actions'
 
 export function fetchBusTimetable(action) {
-  console.log('action', action)
-  return fetch(`https://cors-anywhere.herokuapp.com/https://www.metlink.org.nz/api/v1/StopDepartures/${action.busStop}`)
+  return fetch(`https://cors-anywhere.herokuapp.com/https://www.metlink.org.nz/api/v1/StopDepartures/${action.payload}`)
     .then(response => response.json() )
 }
 
@@ -23,19 +22,20 @@ export function* getBusTimetableSaga(busStop) {
   for (var i = 0; i < 5; i++) {
     services[i] = timetable.Services[i]
   }
-  yield put(actions.receiveTimetable({timetable: services, receivedAt: Date.now()}))
+  yield put(actions.fetchTimetable.success({timetable: services, receivedAt: Date.now()}))
 }
 
 export function* getWeatherSaga() {
   const weather = yield call(fetchWeather)
-  yield put(actions.receiveWeather({weather: weather, receivedAt: Date.now()}))
+  yield put(actions.fetchWeather.success({weather: weather, receivedAt: Date.now()}))
 }
 
 export default function* root() {
-  yield takeLatest('REQUEST_TIMETABLE',
+  yield takeLatest(actions.fetchTimetable.request,
     getBusTimetableSaga,
   )
-  yield takeLatest('REQUEST_WEATHER', 
+  
+  yield takeLatest(actions.fetchWeather.request, 
     getWeatherSaga
   )
 }

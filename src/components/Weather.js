@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import ReactAnimatedWeather from 'react-animated-weather'
 
-import { requestWeather } from '../actions'
+import * as actions from '../actions'
 
 import '../styles/Weather.css'
 
@@ -16,8 +17,8 @@ const defaults = {
 class Weather extends Component {
 
     componentDidMount = () => {
-        this.props.getWeather()
-        setInterval(this.props.getWeather(), 120000)
+        console.log(this.props)
+        setInterval(this.props.fetchWeather.request(), 120000)
     }
 
     render() {
@@ -45,17 +46,13 @@ class Weather extends Component {
 
 const mapStateToProps = state => {
     return {
-      weatherData: state.weatherData
+      weatherData: state.weather
     }
   }
   
-const mapDispatchToProps = dispatch => {
-    return {
-        getWeather: () => {
-            dispatch(requestWeather())            
-        }
-    }
-}
+const mapDispatchToProps = dispatch => ({
+    fetchWeather: bindActionCreators(actions.fetchWeather, dispatch)    
+})
 
 const WeatherContainer = connect(
     mapStateToProps,

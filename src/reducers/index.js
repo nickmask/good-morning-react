@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
-import busDetails from './getBusData'
-import weatherData from './getWeather'
-import induction from './induction'
+import timetable from './timetable.reducers'
+import weather from './weather.reducers'
+import induction from './induction.reducers'
 
-const goodMorningApp = combineReducers({
-  busDetails,
-  weatherData,
+const rootReducer = combineReducers({
+  timetable,
+  weather,
   induction
 })
 
-export default goodMorningApp
+export default rootReducer

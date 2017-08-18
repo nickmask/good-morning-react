@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import moment from 'moment'
 
-import { requestTimetable } from '../actions'
+import * as actions from '../actions'
 
 import '../styles/BusInfo.css'
 
 class BusInfo extends Component {
     componentDidMount = () => {
-        setInterval(this.props.getBusDetails(this.props.busStop), 20000)
+        setInterval(this.props.fetchTimetable.request(this.props.busStop), 20000)
     }
 
     formateTime = (timeUntillDeparture) => {
@@ -58,19 +59,15 @@ class BusInfo extends Component {
 
 const mapStateToProps = state => {
     return {
-      busDetails: state.busDetails,
+      busDetails: state.timetable,
       busStop: state.induction.busStop,
-      isLoading: state.busDetails.isLoading
+      isLoading: state.timetable.isLoading
     }
   }
   
-const mapDispatchToProps = dispatch => {
-    return {
-        getBusDetails: (busStop) => {
-            dispatch(requestTimetable(busStop))            
-        }
-    }
-}
+const mapDispatchToProps = dispatch => ({
+    fetchTimetable: bindActionCreators(actions.fetchTimetable, dispatch)
+})
 
 const BusInfoContainer = connect(
     mapStateToProps,

@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://nickmask.github.io/good-morning-react/",
   "devDependencies": {
+    "react-addons-perf": "^15.4.2",
     "react-scripts": "1.0.10",
     "redux-logger": "^3.0.6"
   },
@@ -17,6 +18,7 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "redux-actions": "^2.2.1",
     "redux-saga": "^0.15.6",
     "uuid": "^3.1.0",
     "weather-js": "^2.0.0"

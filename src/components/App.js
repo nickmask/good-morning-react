@@ -5,9 +5,10 @@ import Greeting from './Greeting'
 import Time from './Time'
 import Weather from './Weather'
 import BusInfo from './BusInfo'
-import Calendar from './Calendar'
 import Quotes from './Quotes'
 import Induction from './Induction'
+import Perf from 'react-addons-perf';
+
 
 import '../styles/App.css';
 
@@ -24,7 +25,17 @@ class App extends Component {
 
   lastUpdatedTime = (time) => {
     this.setState({lastUpdatedTime: time})
-  }  
+  }
+
+  // componentDidMount() {
+  //   setImmediate(() => {
+  //     Perf.start();
+  //   });
+  //   setTimeout(() => {
+  //     Perf.stop();
+  //     Perf.printWasted();
+  //   }, 5000);
+  // }
 
   render() {
     return (
@@ -56,7 +67,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     inductionComplete: state.induction.inductionCompleted,
-    busLastUpdated: state.busDetails.receivedAt
+    busLastUpdated: state.timetable.isLoading
   }
 }
 
